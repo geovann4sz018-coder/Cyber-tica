@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Transparência - CyberÉtica</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .card-custom { border: none; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1 ); }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">CyberÉtica</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/simulador_vulnerabilidade">Simulador de Senhas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">Sair</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="card card-custom">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Bem-vindo(a), {{ user.nome }}!</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="lead">Este é o seu painel de controle, onde você pode visualizar as informações que o sistema utiliza.</p>
+                        <hr>
+                        <h5 class="text-primary">Seu Perfil</h5>
+                        <p><strong>E-mail:</strong> {{ user.email }}</p>
+                        <p class="text-muted small">Sua senha está armazenada de forma segura usando **Hashing (PBKDF2)**. Isso significa que ela nunca é guardada em texto puro, protegendo-a contra acessos indevidos.</p>
+                        
+                        <hr>
+                        <h5 class="text-success">Ética Digital: Transparência de Dados</h5>
+                        <p>Em respeito à sua privacidade e aos princípios da Ética Digital, informamos quais dados são coletados e para qual finalidade:</p>
+                        <h6>Dados Coletados:</h6>
+                        <ul>
+                            {% for dado in user.dados_coletados %}
+                                <li>{{ dado }}</li>
+                            {% endfor %}
+                        </ul>
+                        <h6>Finalidade da Coleta:</h6>
+                        <p>{{ user.finalidade }}</p>
+                        <div class="alert alert-info mt-3">
+                            <small>Você tem o direito de saber como suas informações são utilizadas. Nosso compromisso é com a segurança e a transparência.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white text-center py-4 mt-5">
+        <div class="container">
+            <p>&copy; 2023 CyberÉtica. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
