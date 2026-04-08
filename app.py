@@ -37,6 +37,8 @@ def login():
             session["usuario"] = usuario
             flash("Login realizado com sucesso!", "success")
             return redirect(url_for("dashboard"))
+        elif user == "" or senha == "":
+            flash("Por favor preencha os campos antes de continuar", "warning")
         else:
             flash("Usuário ou senha incorretos.", "danger")
             
